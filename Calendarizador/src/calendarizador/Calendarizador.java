@@ -25,8 +25,10 @@ public class Calendarizador {
           System.err.println("Problemas con la base");
       }
       
-      calendario cal = new calendario();
-      cal.visible();
+      //calendario cal = new calendario();
+      //cal.visible();
+      GUI gui = new GUI();
+      gui.init();
       
   }
   
