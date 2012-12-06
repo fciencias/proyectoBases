@@ -26,7 +26,7 @@ public class GUI {
     private JPanel panel_principal;
     private JPanel informacion;
     private JTabbedPane pestanas;
-    private JMenuBar menu;
+    private JMenuBar menu_;
     private static int ALTO = 750;
     private static int LARGO = 600;
     
@@ -37,7 +37,8 @@ public class GUI {
         marco = new JFrame("Calendarizador");
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         marco.setPreferredSize(new Dimension(ALTO, LARGO));
-        marco.setJMenuBar(creaBarraMenu());
+        menu_ = creaBarraMenu();
+        marco.setJMenuBar(menu_);
         panel_principal = new JPanel();
         panel_principal.setPreferredSize(new Dimension(ALTO, LARGO));
         panel_principal.setLayout(new BorderLayout());
@@ -56,7 +57,7 @@ public class GUI {
         marco.setVisible(true);
     }
     
-    public JMenuBar creaBarraMenu() {
+    public final JMenuBar creaBarraMenu() {
         JMenuBar barraMenu = new JMenuBar();
         JMenu menu = new JMenu("Calendarizar");
         barraMenu.add(menu);
