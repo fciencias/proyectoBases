@@ -4,6 +4,8 @@
  */
 package calendarizador;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author pepe
@@ -15,5 +17,12 @@ public class Calendarizador {
    */
   public static void main(String[] args) {
     // TODO code application logic here
+      try {
+      Conexion coneccion = new Conexion("supermercado", "postgres", "postgres");
+      } catch (ClassNotFoundException cnfe) {
+          System.err.println("NO encontre la clase");
+      } catch (SQLException sqle) {
+          System.err.println("Problemas con la base");
+      }
   }
 }
