@@ -2,11 +2,18 @@ package calendarizador;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -30,7 +37,7 @@ public class GUI {
         marco = new JFrame("Calendarizador");
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         marco.setPreferredSize(new Dimension(ALTO, LARGO));
-        //marco.setJmenuBar(creaBarraMenu());
+        marco.setJMenuBar(creaBarraMenu());
         panel_principal = new JPanel();
         panel_principal.setPreferredSize(new Dimension(ALTO, LARGO));
         panel_principal.setLayout(new BorderLayout());
@@ -47,6 +54,34 @@ public class GUI {
      */
     public void init() {
         marco.setVisible(true);
+    }
+    
+    public JMenuBar creaBarraMenu() {
+        JMenuBar barraMenu = new JMenuBar();
+        JMenu menu = new JMenu("Calendarizar");
+        barraMenu.add(menu);
+        JMenuItem el;
+        el = new JMenuItem("Salir");
+        el.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 
+            ActionEvent.CTRL_MASK));
+        el.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        menu.add(el);
+        menu = new JMenu("Help");
+        el = new JMenuItem("info");
+        el.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(marco, "Copy Rigth Derechos Reservados\n"+
+                        "Galindo Martinez Jose Cruz\nSalazar Sastre Martin",
+                        "Acerca de...",JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        menu.add(el);
+        barraMenu.add(menu);
+        return barraMenu;
     }
     
     //
