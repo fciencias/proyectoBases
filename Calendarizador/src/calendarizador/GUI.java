@@ -52,10 +52,11 @@ public class GUI {
     //
     private JTabbedPane creaPestanas() {
         JTabbedPane tabedPane = new JTabbedPane();
-        JPanel principal = pestanaUsuarios();
+        JPanel panelUsuarios = pestanaUsuarios();
+        JPanel panelEventos = pestanaEventos();
         
-        
-        tabedPane.addTab("Usuarios", null, principal, "Lista de Usuarios");
+        tabedPane.addTab("Usuarios", null, panelUsuarios, "Lista de Usuarios");
+        tabedPane.addTab("Eventos", null, panelEventos, "Lista de Eventos");
         tabedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         return tabedPane;
     }
@@ -72,11 +73,40 @@ public class GUI {
         JPanel botones = new JPanel();
         JButton adduser = new JButton("Agregar Usuario");
         JButton deluser = new JButton(" Borrar Usuario");
+        JButton addEvent = new JButton("Agregar Evento");
+        adduser.setToolTipText("Agrega a un nuevo usuario");
+        deluser.setToolTipText("Elimina a un usuario");
+        addEvent.setToolTipText("Crea un nuevo evento");
         botones.add(adduser);
         botones.add(deluser);
+        botones.add(addEvent);
         principal.add(usuariosPanel, BorderLayout.CENTER);
         principal.add(botones, BorderLayout.SOUTH);
         return principal;
     }
+    
+    
+    //
+    private JPanel pestanaEventos() {
+        JPanel principal = new JPanel();
+        principal.setPreferredSize(new Dimension(650, 510));
+        principal.setLayout(new BorderLayout());
+        
+        JPanel eventosPanel = new JPanel();
+        eventosPanel.setPreferredSize(new Dimension(600, 500));
+        
+        JPanel botones = new JPanel();
+        JButton addevent = new JButton("Agregar Evento");
+        JButton delevent = new JButton(" Borrar Evento");
+        botones.add(addevent);
+        botones.add(delevent);
+        principal.add(eventosPanel, BorderLayout.CENTER);
+        principal.add(botones, BorderLayout.SOUTH);
+        return principal;
+    }
+    
+    
+    
+    
     
 }
