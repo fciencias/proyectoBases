@@ -66,6 +66,7 @@ public class GUI {
         el.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 
             ActionEvent.CTRL_MASK));
         el.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
@@ -74,6 +75,7 @@ public class GUI {
         menu = new JMenu("Help");
         el = new JMenuItem("info");
         el.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(marco, "Copy Rigth Derechos Reservados\n"+
                         "Galindo Martinez Jose Cruz\nSalazar Sastre Martin",
@@ -90,6 +92,7 @@ public class GUI {
         JTabbedPane tabedPane = new JTabbedPane();
         JPanel panelUsuarios = pestanaUsuarios();
         JPanel panelEventos = pestanaEventos();
+        JPanel panelGrupos = pestanasGrupos();
         
         tabedPane.addTab("Usuarios", null, panelUsuarios, "Lista de Usuarios");
         tabedPane.addTab("Eventos", null, panelEventos, "Lista de Eventos");
@@ -139,6 +142,10 @@ public class GUI {
         principal.add(eventosPanel, BorderLayout.CENTER);
         principal.add(botones, BorderLayout.SOUTH);
         return principal;
+    }
+
+    private JPanel pestanasGrupos() {
+        return new JPanel();
     }
     
     
