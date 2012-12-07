@@ -96,6 +96,7 @@ public class GUI {
         
         tabedPane.addTab("Usuarios", null, panelUsuarios, "Lista de Usuarios");
         tabedPane.addTab("Eventos", null, panelEventos, "Lista de Eventos");
+        tabedPane.addTab("Grupos", null, panelGrupos, "Lista de Grupos");
         tabedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         return tabedPane;
     }
@@ -116,6 +117,24 @@ public class GUI {
         adduser.setToolTipText("Agrega a un nuevo usuario");
         deluser.setToolTipText("Elimina a un usuario");
         addEvent.setToolTipText("Crea un nuevo evento");
+        adduser.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                //Aqui va el verdadero codigo
+                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        deluser.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                //Aqui va el verdadero codigo
+                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        addEvent.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                //Aqui va el verdadero codigo
+                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
         botones.add(adduser);
         botones.add(deluser);
         botones.add(addEvent);
@@ -137,6 +156,18 @@ public class GUI {
         JPanel botones = new JPanel();
         JButton addevent = new JButton("Agregar Evento");
         JButton delevent = new JButton(" Borrar Evento");
+        addevent.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                //Aqui va el verdadero codigo
+                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        delevent.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                //Aqui va el verdadero codigo
+                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
         botones.add(addevent);
         botones.add(delevent);
         principal.add(eventosPanel, BorderLayout.CENTER);
@@ -145,7 +176,35 @@ public class GUI {
     }
 
     private JPanel pestanasGrupos() {
-        return new JPanel();
+        JPanel principal = new JPanel();
+        principal.setPreferredSize(new Dimension(650, 510));
+        principal.setLayout(new BorderLayout());
+        
+        JPanel usuariosPanel = new JPanel();
+        usuariosPanel.setPreferredSize(new Dimension(600, 500));
+        
+        JPanel botones = new JPanel();
+        JButton adduser = new JButton("Agregar Grupo");
+        JButton deluser = new JButton(" Borrar Grupo");
+        adduser.setToolTipText("Agrega a un nuevo grupo");
+        deluser.setToolTipText("Elimina a un grupo");
+        adduser.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                //Aqui va el verdadero codigo
+                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        deluser.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                //Aqui va el verdadero codigo
+                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        botones.add(adduser);
+        botones.add(deluser);
+        principal.add(usuariosPanel, BorderLayout.CENTER);
+        principal.add(botones, BorderLayout.SOUTH);
+        return principal;
     }
     
     
