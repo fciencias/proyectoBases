@@ -14,20 +14,15 @@ INSERT INTO usuario VALUES ('maases', 'MANUEL','ASTUDILLO','ESTUDILLO','manuel@h
 INSERT INTO usuario VALUES ('calaor', 'CARLOS','LARA','ORTIZ','carlos@hotmail.com','1993-02-08','tyej');
 INSERT INTO usuario VALUES ('oypime', 'OYALA','PIMENTEL','PIZZA','oyala@hotmail.com','1978-01-06','ghti');
 INSERT INTO usuario VALUES ('macoca', 'MAYRA','CORONADO','CAMARGO','mayra@hotmail.com','1912-04-04','yruv');
-
 INSERT INTO grupo(id_responsable,nombre_grupo,fecha_creacion) VALUES ('edmera','Computologos','2012-01-03');
 INSERT INTO grupo(id_responsable,nombre_grupo,fecha_creacion) VALUES ('sacaro','Porristas','2001-10-10');
 INSERT INTO grupo(id_responsable,nombre_grupo,fecha_creacion) VALUES ('rumova','Gamers','2006-01-11');
-
-
 INSERT INTO evento(responsable,fecha_inicio,fecha_final,hora_inicio,hora_final,descripcion,max_asistentes)
  VALUES ('edmera','2012-10-01','2012-10-10','12:00:00','19:00:00','congreso',100);
 INSERT INTO evento(responsable,fecha_inicio,fecha_final,hora_inicio,hora_final,descripcion,max_asistentes)
  VALUES ('maases','2012-11-01','2012-12-10','09:00:00','20:00:00','video juegos',50);
 INSERT INTO evento(responsable,fecha_inicio,fecha_final,hora_inicio,hora_final,descripcion,max_asistentes)
  VALUES ('sacaro','2012-09-06','2012-11-02','11:00:00','20:00:00','concurso',200);
-
-
 INSERT INTO usuarioAsistente VALUES ('edmera',1);
 INSERT INTO usuarioAsistente VALUES ('luanma',1);
 INSERT INTO usuarioAsistente VALUES ('edgoca',1);
@@ -44,7 +39,7 @@ INSERT INTO recurso(nombre,descripcion,cantidad) VALUES ('Sillas','sillas para e
 INSERT INTO recurso(nombre,descripcion,cantidad) VALUES ('Mesas','mesas para 4 personas',100);
 INSERT INTO recurso(nombre,descripcion,cantidad) VALUES ('Auditores','lugar para eventos',4);
 INSERT INTO recurso(nombre,descripcion,cantidad) VALUES ('Computadoras','computadoras',30);
+INSERT INTO asignacion_recursos VALUES (1,1,25);
+INSERT INTO asignacion_recursos VALUES (2,2,10);
+INSERT INTO asignacion_recursos VALUES (3,3,2);
 
-INSERT INTO asignacion_recursos VALUES (1,5,25)
-INSERT INTO asignacion_recursos VALUES (2,3,1)
-INSERT INTO asignacion_recursos VALUES (3,1,45)

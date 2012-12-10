@@ -148,7 +148,7 @@ WHERE recurso.num_inventario = tupla.num_inventario;
 return new;
 END IF;
 END LOOP;
-return null;
+return new;
 end;
 $liberarRecursos$
 LANGUAGE plpgsql;

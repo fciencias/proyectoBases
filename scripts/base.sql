@@ -1,3 +1,6 @@
+﻿ /*
+ Definicion de la tabla Usuarios
+ */
 CREATE TABLE usuario
 (
   id_usuario character varying(50) NOT NULL,
@@ -11,7 +14,9 @@ CREATE TABLE usuario
   CONSTRAINT fechaNac_check CHECK (fecha_nacimiento < CURRENT_DATE)
 );
 
-
+ /*
+ Definicion de la tabla grupo
+ */
 CREATE TABLE grupo
 (
   id_grupo serial ,
@@ -28,9 +33,12 @@ CREATE TABLE grupo
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+ /*
+ Definicion de la tabla evento
+ */
 CREATE TABLE evento
 (
-  id_evento serial,
+  id_evento serial UNIQUE,
   responsable character varying(50) NOT NULL,
   fecha_inicio date,
   fecha_final date,
@@ -38,13 +46,15 @@ CREATE TABLE evento
   hora_final time,
   descripcion character varying(255),
   max_asistentes integer,
-  CONSTRAINT pkey_evento PRIMARY KEY (id_evento),
+  CONSTRAINT pkey_evento PRIMARY KEY (id_evento,responsable),
   CONSTRAINT fkey_responsable FOREIGN KEY (responsable)
       REFERENCES usuario(id_usuario) MATCH FULL
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-
+ /*
+ Definicion de la tabla usuarioAsistente
+ */
 
 CREATE TABLE usuarioAsistente
 (
@@ -58,7 +68,9 @@ CREATE TABLE usuarioAsistente
       REFERENCES usuario(id_usuario) MATCH FULL
       ON UPDATE CASCADE ON DELETE CASCADE
 );
-
+ /*
+ Definicion de la tabla grupoAsistente
+ */
 CREATE TABLE grupoAsistente(
   id_evento	integer,
   id_grupo	integer,
@@ -71,16 +83,21 @@ CREATE TABLE grupoAsistente(
   ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+ /*
+ Definicion de la talba recurso
+ */
 CREATE TABLE recurso
 (
   num_inventario serial,
   nombre character varying (50) NOT NULL,
   descripcion character varying (50),
   cantidad integer NOT NULL,
-  CONSTRAINT pkey_recurso PRIMARY KEY (num_inventario),
+  CONSTRAINT pkey_recurso PRIMARY KEY (num_inventario)
 );
 
-
+ /*
+ Definicion de la talba asignacion_recursos
+ */
 CREATE TABLE asignacion_recursos
 (
   id_evento integer ,
