@@ -140,7 +140,7 @@ public class GUI {
                         boolean createCorrected = createuser.agregarUsuario(nu);
                         if (createCorrected) {
                             JOptionPane.showMessageDialog(marco, "Exito al insertar");
-                            actualizaLista(lista);
+                            actualizaListaUsu(lista);
                         } else {
                             JOptionPane.showMessageDialog(marco, "Error al Insertar");
                         }
@@ -156,7 +156,7 @@ public class GUI {
                 if (ok) {
                     DialogoDelUser deluser = new DialogoDelUser(marco, "Eliminar", "Prueba", conexion);
                     deluser.corre();
-                    actualizaLista(lista);
+                    actualizaListaUsu(lista);
                 }
             }
         });
@@ -173,19 +173,31 @@ public class GUI {
         JPanel principal = new JPanel();
         principal.setPreferredSize(new Dimension(650, 510));
         principal.setLayout(new BorderLayout());
-        
+        final EventoBD eventodb = new EventoBD(conexion);
+
+        final JList<Evento> lista = new JList<Evento>();
+        JScrollPane rollo = new JScrollPane(lista);
+        rollo.setPreferredSize(new Dimension(590, 450));
+        Vector<Evento> usua = eventodb.mostrarEventos();
+        lista.setListData(usua);
+        //
         JPanel eventosPanel = new JPanel();
         eventosPanel.setPreferredSize(new Dimension(600, 500));
-        
+        eventosPanel.add(rollo);
         JPanel botones = new JPanel();
         JButton addevent = new JButton("Agregar Evento");
         JButton delevent = new JButton(" Borrar Evento");
         addevent.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                DialogoAddEvento dae = new DialogoAddEvento(marco, "Agregar Evento", "Agregar Evento");
-                Evento tmp = dae.corre();
-                if (tmp != null) {
-                    
+                DialogoValidadorID dvid = new DialogoValidadorID(marco, "Validar Usuario", "", conexion);
+                String idu = dvid.corre();
+                if (idu != null) {
+                    DialogoAddEvento dae = new DialogoAddEvento(marco, "Agregar Evento", "Agregar Evento");
+                    Evento tmp = dae.corre();
+                    if (tmp != null) {
+                     eventodb.agregarEvento(tmp, idu);
+                     actualizaListaEve(lista);
+                    }
                 }
             }
         });
@@ -234,9 +246,15 @@ public class GUI {
         return principal;
     }
     
-    private void actualizaLista(JList<Usuario> lista) {
+    private void actualizaListaUsu(JList<Usuario> lista) {
         UsuarioBD createuser = new UsuarioBD(conexion);
         Vector<Usuario> usua = createuser.mostrarUsuarios();
+        lista.setListData(usua);
+    }
+    
+    private void actualizaListaEve(JList<Evento> lista) {
+        EventoBD eventodb = new EventoBD(conexion);
+        Vector<Evento> usua = eventodb.mostrarEventos();
         lista.setListData(usua);
     }
     

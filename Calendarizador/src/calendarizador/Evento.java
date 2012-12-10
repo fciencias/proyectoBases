@@ -182,7 +182,7 @@ public class Evento {
 
     @Override
     public String toString() {
-        return "Evento{" + "id_evento=" + id_evento + ", responsable=" + responsable + ", fecha_inicio=" + fecha_inicio + ", fecha_final=" + fecha_final + ", hora_inicio=" + hora_inicio + ", hora_final=" + hora_final + ", descripcion=" + descripcion + ", max_asistentes=" + max_asistentes + '}';
+        return "Evento{" + "id_evento=" + id_evento + ", responsable=" + responsable + ", fecha_inicio=" + fecha_inicio + ", fecha_final=" + fecha_final + ", hora_inicio=" + hora_inicio + ", hora_final=" + hora_final + ", descripcion=" + descripcion + ", max_asistentes=" + max_asistentes + "}\n";
     }
     
     
