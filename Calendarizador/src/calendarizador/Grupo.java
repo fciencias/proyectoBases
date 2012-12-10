@@ -100,7 +100,17 @@ class Grupo {
 
     @Override
     public String toString() {
-        return "Grupo{" + "id_grupo=" + id_grupo + ", responsable=" + responsable + ", nombre=" + nombre + ", fecha_creacion=" + fecha_creacion + "\n}";
+        StringBuilder st = new StringBuilder();
+        st.append("ID de Grupo: ");
+        st.append(id_grupo);
+        st.append("    Responsable: ");
+        st.append(responsable);
+        st.append("    Nombre: ");
+        st.append(nombre);
+        st.append("    Fecha: ");
+        st.append(fecha_creacion);
+        st.append("\n");
+        return st.toString();
     }
 
     

@@ -182,7 +182,25 @@ public class Evento {
 
     @Override
     public String toString() {
-        return "Evento{" + "id_evento=" + id_evento + ", responsable=" + responsable + ", fecha_inicio=" + fecha_inicio + ", fecha_final=" + fecha_final + ", hora_inicio=" + hora_inicio + ", hora_final=" + hora_final + ", descripcion=" + descripcion + ", max_asistentes=" + max_asistentes + "}\n";
+        StringBuilder st = new StringBuilder();
+        st.append("ID de Evento: ");
+        st.append(id_evento);
+        st.append("    Responsable: ");
+        st.append(responsable);
+        st.append("    Fecha Inicio: ");
+        st.append(fecha_inicio);
+        st.append("    Fecha Final: ");
+        st.append(fecha_final);
+        st.append("    Hora Inicio: ");
+        st.append(hora_inicio);
+        st.append("    Hora Final: ");
+        st.append(hora_final);
+        st.append("    Descripcion: ");
+        st.append(descripcion);
+        st.append("    Asitentes Maximos: ");
+        st.append(max_asistentes);
+        st.append("\n");
+        return st.toString();
     }
     
     

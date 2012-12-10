@@ -168,8 +168,7 @@ public class GUI {
         principal.add(botones, BorderLayout.SOUTH);
         return principal;
     }
-    
-    
+     
     //
     private JPanel pestanaEventos() {
         JPanel principal = new JPanel();
@@ -227,7 +226,6 @@ public class GUI {
         return principal;
     }
 
-    
     //
     private JPanel pestanasGrupos() {
         JPanel principal = new JPanel();
