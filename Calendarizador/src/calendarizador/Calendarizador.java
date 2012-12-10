@@ -17,18 +17,25 @@ public class Calendarizador {
    */
   public static void main(String[] args) {
     // TODO code application logic here
+      Conexion coneccion = null;
       try {
-        Conexion coneccion = new Conexion("supermercado", "postgres", "postgres");
+        coneccion = new Conexion("supermercado", "postgres", "postgres");
       } catch (ClassNotFoundException cnfe) {
           System.err.println("NO encontre la clase");
       } catch (SQLException sqle) {
           System.err.println("Problemas con la base");
       }
       
+      EventoBD edb = new EventoBD(coneccion);
+      try {
+        System.out.println(edb.consultarEvento());
+      } catch (SQLException sqle) {
+          System.out.println("Error");
+      }
       //calendario cal = new calendario();
       //cal.visible();
-      GUI gui = new GUI();
-      gui.init();
+      //GUI gui = new GUI();
+      //gui.init();
       
   }
   
