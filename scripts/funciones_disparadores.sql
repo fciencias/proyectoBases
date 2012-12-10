@@ -99,10 +99,12 @@ RETURNS trigger
 AS $maxAsistentes$
 DECLARE
 numAsistentes integer;
+maxA integer;
 BEGIN
 numAsistentes := (select count(id_usuario)
-		 from usiarioAsistente);
-IF numAsitentes = (select max_asistentes from evento where evento.id_evento = new.id_evento)
+		 from usuarioAsistente);
+maxA:= (select max_asistentes from evento where evento.id_evento = new.id_evento);
+IF numAsistentes = maxA
   THEN
   raise exception 'No hay cupo en el evento';
 ELSE 

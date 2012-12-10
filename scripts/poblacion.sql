@@ -28,18 +28,18 @@ INSERT INTO evento(responsable,fecha_inicio,fecha_final,hora_inicio,hora_final,d
  VALUES ('sacaro','2012-09-06','2012-11-02','11:00:00','20:00:00','concurso',200);
 
 
-INSERT INTO usarioAsistente VALUES ('edmera',1);
-INSERT INTO usarioAsistente VALUES ('luanma',1);
-INSERT INTO usarioAsistente VALUES ('edgoca',1);
-INSERT INTO usarioAsistente VALUES ('oscobl',1);
-INSERT INTO usarioAsistente VALUES ('sacaro',2);
-INSERT INTO usarioAsistente VALUES ('oypime',2);
-INSERT INTO usarioAsistente VALUES ('macoca',2);
-INSERT INTO usarioAsistente VALUES ('romeme',3);
-INSERT INTO usarioAsistente VALUES ('omsica',3);
-INSERT INTO usarioAsistente VALUES ('rumova',3);
-INSERT INTO usarioAsistente VALUES ('jemaso',3);
-INSERT INTO usarioAsistente VALUES ('aroles',3);
+INSERT INTO usuarioAsistente VALUES ('edmera',1);
+INSERT INTO usuarioAsistente VALUES ('luanma',1);
+INSERT INTO usuarioAsistente VALUES ('edgoca',1);
+INSERT INTO usuarioAsistente VALUES ('oscobl',1);
+INSERT INTO usuarioAsistente VALUES ('sacaro',2);
+INSERT INTO usuarioAsistente VALUES ('oypime',2);
+INSERT INTO usuarioAsistente VALUES ('macoca',2);
+INSERT INTO usuarioAsistente VALUES ('romeme',3);
+INSERT INTO usuarioAsistente VALUES ('omsica',3);
+INSERT INTO usuarioAsistente VALUES ('rumova',3);
+INSERT INTO usuarioAsistente VALUES ('jemaso',3);
+INSERT INTO usuarioAsistente VALUES ('aroles',3);
 INSERT INTO recurso(nombre,descripcion,cantidad) VALUES ('Sillas','sillas para eventos',50);
 INSERT INTO recurso(nombre,descripcion,cantidad) VALUES ('Mesas','mesas para 4 personas',100);
 INSERT INTO recurso(nombre,descripcion,cantidad) VALUES ('Auditores','lugar para eventos',4);
