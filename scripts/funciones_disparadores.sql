@@ -120,7 +120,7 @@ LANGUAGE plpgsql;
  Disparador que se ejecuta antes se insertar un asistente a un evento
  */
 CREATE TRIGGER verificar_maxAsistentes
-BEFORE INSERT ON usarioAsistente
+BEFORE INSERT ON usuarioAsistente
 FOR EACH ROW
 EXECUTE PROCEDURE maxAsistentes();
 
