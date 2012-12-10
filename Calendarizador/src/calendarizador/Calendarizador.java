@@ -33,10 +33,10 @@ public class Calendarizador {
       } catch (SQLException sqle) {
           System.out.println("Error");
       }*/
-      calendario cal = new calendario();
-      cal.visible();
-      //GUI gui = new GUI();
-      //gui.init();
+      //calendario cal = new calendario();
+      //cal.visible();
+      GUI gui = new GUI(coneccion);
+      gui.init();
       
   }
   

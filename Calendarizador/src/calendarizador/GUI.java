@@ -29,11 +29,13 @@ public class GUI {
     private JMenuBar menu_;
     private static int ALTO = 750;
     private static int LARGO = 600;
+    private Conexion conexion;
     
     /**
      *
      */
-    public GUI() {
+    public GUI(Conexion conexionActiva) {
+        this.conexion = conexionActiva;
         marco = new JFrame("Calendarizador");
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         marco.setPreferredSize(new Dimension(ALTO, LARGO));
@@ -119,6 +121,13 @@ public class GUI {
         adduser.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 //Aqui va el verdadero codigo
+                //si el uuario es valido entonces has esto
+                DialogoValidador validador = new DialogoValidador(marco, "Validar", "", conexion);
+                boolean ok = validador.corre();
+                if (ok) {
+                    DialogoAddUser agregarUsuarioDialogo = new DialogoAddUser(marco, "Agregar Usuario", "");
+                    agregarUsuarioDialogo.corre();
+                }
                 JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
             }
         });

@@ -19,7 +19,9 @@ class Usuario {
     /**
      * 
      */
-    public Usuario(String nombre, String ap_paterno, String ap_materno, String email, String password, Date fecha) {
+    public Usuario(String id_uus, String nombre, String ap_paterno, 
+            String ap_materno, String email, String password, Date fecha) {
+        this.id_usuario = id_uus;
         this.nombre = nombre;
         this.ap_paterno = ap_paterno;
         this.ap_materno = ap_materno;

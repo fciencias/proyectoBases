@@ -31,12 +31,9 @@ public class calendario {
         okboton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 Date date = calendario_.getDate();
-                int dia= date.getDay();
-                int mes= date.getMonth();
-                int anio= date.getYear();
-                System.out.println(dia+"-"+mes+"-"+anio);
-                Calendar ccc = new GregorianCalendar(anio, mes, dia);
-                JOptionPane.showMessageDialog(marco,date.toString(), "Fecha", JOptionPane.INFORMATION_MESSAGE);
+                
+                JOptionPane.showMessageDialog(marco,date.toString(), 
+                        "Fecha", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         calendario_.setDecorationBordersVisible(true);
