@@ -25,16 +25,7 @@ public class Calendarizador {
       } catch (SQLException sqle) {
           System.err.println("Problemas con la base");
       }
-      /*
-      EventoBD edb = new EventoBD(coneccion);
-      try {
-        String res = edb.consultarEvento();
-        System.out.println(res);
-      } catch (SQLException sqle) {
-          System.out.println("Error");
-      }*/
-      //calendario cal = new calendario();
-      //cal.visible();
+      
       GUI gui = new GUI(coneccion);
       gui.init();
       

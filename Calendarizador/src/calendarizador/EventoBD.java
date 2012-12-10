@@ -40,5 +40,30 @@ public class EventoBD {
         return sb.toString();
     }
     
+    public boolean agrgarEvento(Evento evento, String id_responsable) {
+        sb = new StringBuilder();
+        sb.append("INSERT INTO evento VALUES ('");
+            sb.append(id_responsable);
+            sb.append("','");
+            sb.append(evento.getFecha_inicio());
+            sb.append("','");
+            sb.append(evento.getFecha_final());
+            sb.append("','");
+            sb.append(evento.getHora_inicio());
+            sb.append("','");
+            sb.append(evento.getHora_final());
+            sb.append("','");
+            sb.append(evento.getDescripcion());
+            sb.append("',");
+            sb.append(evento.getMax_asistentes());
+            sb.append(");");
+        try {
+            conexion.actualizarBase(sb.toString());
+        } catch (SQLException e) {
+            System.err.println("No se puede agregar el evento a la base");
+        }
+        return true;
+    }
+    
     
 }

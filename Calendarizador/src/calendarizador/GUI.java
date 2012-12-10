@@ -182,8 +182,11 @@ public class GUI {
         JButton delevent = new JButton(" Borrar Evento");
         addevent.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                //Aqui va el verdadero codigo
-                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+                DialogoAddEvento dae = new DialogoAddEvento(marco, "Agregar Evento", "Agregar Evento");
+                Evento tmp = dae.corre();
+                if (tmp != null) {
+                    
+                }
             }
         });
         delevent.addActionListener(new ActionListener() {
