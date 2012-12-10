@@ -31,19 +31,32 @@ class Grupo {
         this.grupo_padre = grupo_padre;
     }
 
+    public Grupo(int id_grupo, String responsable, String nombre, Date fecha_creacion) {
+        this.id_grupo = id_grupo;
+        this.responsable = responsable;
+        this.nombre = nombre;
+        this.fecha_creacion = fecha_creacion;
+    }
+    
+    
+
     /**
      * 
-     * @param responsable
      * @param nombre
      * @param fecha_creacion
-     * @param grupo_padre 
      */
-    public Grupo(String responsable, String nombre, Date fecha_creacion, int grupo_padre) {
-        this.responsable = responsable;
+    public Grupo(String nombre, Date fecha_creacion) {
+        this.nombre = nombre;
+        this.fecha_creacion = fecha_creacion;
+    }
+
+    public Grupo(String nombre, Date fecha_creacion, int grupo_padre) {
         this.nombre = nombre;
         this.fecha_creacion = fecha_creacion;
         this.grupo_padre = grupo_padre;
     }
+    
+    
 
     public int getId_grupo() {
         return id_grupo;
@@ -83,6 +96,11 @@ class Grupo {
 
     public void setGrupo_padre(int grupo_padre) {
         this.grupo_padre = grupo_padre;
+    }
+
+    @Override
+    public String toString() {
+        return "Grupo{" + "id_grupo=" + id_grupo + ", responsable=" + responsable + ", nombre=" + nombre + ", fecha_creacion=" + fecha_creacion + "\n}";
     }
 
     

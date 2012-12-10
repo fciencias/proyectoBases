@@ -26,6 +26,7 @@ public class DialogoAddGroup extends JDialog {
     
     private JTextField inNombre;
     private JDateChooser calendario;
+    private JTextField inGrupoPadre;
     private JButton aceptar;
     private JButton cancelar;
     private Grupo grupo;
@@ -39,7 +40,7 @@ public class DialogoAddGroup extends JDialog {
 
     private void armaDialogo(JFrame padre, String mensaje) {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(94, 2));
+        panel.setLayout(new GridLayout(5, 2));
         panel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         JLabel etiqueta = new JLabel(mensaje, SwingConstants.LEFT);
         panel.add(etiqueta);
@@ -48,6 +49,10 @@ public class DialogoAddGroup extends JDialog {
         panel.add(etiqueta);
         inNombre = new JTextField(25);
         panel.add(inNombre);
+        etiqueta = new JLabel("Grupo Padre:",SwingConstants.RIGHT);
+        panel.add(etiqueta);
+        inGrupoPadre = new JTextField(25);
+        panel.add(inGrupoPadre);
         etiqueta = new JLabel("fecha creacion:",SwingConstants.RIGHT);
         panel.add(etiqueta);
         calendario = new JDateChooser();
@@ -96,6 +101,11 @@ public class DialogoAddGroup extends JDialog {
             mensaje += "El nombre no puede ser vacio.\n";
             validos = false;
         }
+        try {
+            Number n = Integer.parseInt(inGrupoPadre.getText());
+        } catch (NumberFormatException nfe) {
+            mensaje += "El grupo padre debe de ser un numero.";
+        }
         if (!validos) {
             JOptionPane.showMessageDialog(this, mensaje,"Campos Invalidos", 
                     JOptionPane.WARNING_MESSAGE);
@@ -107,7 +117,12 @@ public class DialogoAddGroup extends JDialog {
             long sqldate = fecha.getTime();
             sqlfecha = new java.sql.Date(sqldate);
         }
-        //nuevoUsuario = new Usuario(id, name, app, apm, corre, contra, sqlfecha);
+        if (inGrupoPadre.getText().equals("")) { 
+           grupo = new Grupo(name, sqlfecha);
+        } else {
+            int papa = Integer.parseInt(inGrupoPadre.getText());
+            grupo = new Grupo(name, sqlfecha, papa);
+        }
         return validos;
     }
     

@@ -48,8 +48,9 @@ public class GrupoBD {
      * @return 
      */
     public boolean agregarGrupo(Grupo nuevoGrupo) {
+        st = new StringBuilder();
         boolean salida = true;
-        st.append("INSERT INTO grupo (id_responsable, nombre_grupo, fecha_creacin)"+
+        st.append("INSERT INTO grupo (id_responsable, nombre_grupo, fecha_creacion)"+
                 " VALUES ('");
         st.append(nuevoGrupo.getResponsable());
         st.append("','");
@@ -57,6 +58,7 @@ public class GrupoBD {
         st.append("','");
         st.append(nuevoGrupo.getFecha_creacion());
         st.append("');");
+        
         try {
             System.out.println(nuevoGrupo.toString());
             System.out.println(st.toString());
@@ -72,21 +74,18 @@ public class GrupoBD {
      * 
      * @return 
      */
-    public Vector<Usuario> mostrarGrupos () {
-        Vector<Usuario> vector = new Vector<Usuario>();
+    public Vector<Grupo> mostrarGrupos () {
+        Vector<Grupo> vector = new Vector<Grupo>();
         try {
             resultado = conexion.consulta("SELECT * FROM grupo;");
-            Usuario tmp = null;
+            Grupo tmp = null;
             while (resultado.next()) {
-                /*String idU = resultado.getString("id_usuario");
-                String nom = resultado.getString("nombre");
-                String app = resultado.getString("ap_paterno");
-                String apm = resultado.getString("ap_materno");
-                String ema = resultado.getString("email");
-                String pas = resultado.getString("id_password");
-                Date date = resultado.getDate("fecha_nacimiento");
-                tmp = new Usuario(idU, nom, app, apm, ema, pas, date);
-                vector.add(tmp);*/
+                int id = resultado.getInt("id_grupo");
+                String nom = resultado.getString("id_responsable");
+                String nombre_grupo = resultado.getString("nombre_grupo");
+                Date fecha = resultado.getDate("fecha_creacion");
+                tmp = new Grupo(id, nom, nombre_grupo, fecha);
+                vector.add(tmp);
             }
         } catch (SQLException sqle) {
             System.err.println("Error al abrir los usuarios");

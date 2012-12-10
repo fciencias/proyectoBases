@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -231,10 +233,15 @@ public class GUI {
         JPanel principal = new JPanel();
         principal.setPreferredSize(new Dimension(650, 510));
         principal.setLayout(new BorderLayout());
-        
+        final GrupoBD gbd = new GrupoBD(conexion);
         JPanel usuariosPanel = new JPanel();
+        final JList<Grupo> lista = new JList<Grupo>();
+        JScrollPane rollo = new JScrollPane(lista);
+        rollo.setPreferredSize(new Dimension(590, 450));
+        Vector<Grupo> usua = gbd.mostrarGrupos();
+        lista.setListData(usua);
         usuariosPanel.setPreferredSize(new Dimension(600, 500));
-        
+        usuariosPanel.add(rollo);
         JPanel botones = new JPanel();
         JButton adduser = new JButton("Agregar Grupo");
         JButton deluser = new JButton(" Borrar Grupo");
@@ -242,14 +249,38 @@ public class GUI {
         deluser.setToolTipText("Elimina a un grupo");
         adduser.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                //Aqui va el verdadero codigo
-                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+                DialogoValidadorID dvid = new DialogoValidadorID(marco, "Validacion", "Ingresar Datos", conexion);
+                String corre = dvid.corre();
+                if (corre != null) {
+                    //si me dio un usuario valido
+                    DialogoAddGroup dag = new DialogoAddGroup(marco, "Agregar", "Ingresar Datos");
+                    Grupo mi_grupo = dag.corre();
+                    
+                    //checar si el grupo es nulo
+                    if (mi_grupo != null) {
+                        mi_grupo.setResponsable(corre);
+                        boolean agregarGrupo = gbd.agregarGrupo(mi_grupo);
+                        if (agregarGrupo) {
+                             JOptionPane.showMessageDialog(marco, "Exito al insertar");
+                             actualizaListaGpos(lista);
+                         } else {
+                            JOptionPane.showMessageDialog(marco, "Error al Insertar");
+                        }
+                    }
+                } 
             }
         });
         deluser.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 //Aqui va el verdadero codigo
-                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+                DialogoValidador dv = new DialogoValidador(marco, "Validar", "Ingresar datos", conexion);
+                boolean corre = dv.corre();
+                if (corre) {
+                    DialogoDelGroup dde = new DialogoDelGroup(marco, "Eliminar", "Insertar id grupo", conexion);
+                    dde.corre();
+                    actualizaListaGpos(lista);
+                }
             }
         });
         botones.add(adduser);
@@ -271,6 +302,11 @@ public class GUI {
         lista.setListData(usua);
     }
     
-    
+    private void actualizaListaGpos(JList<Grupo> lista) {
+        GrupoBD gbd = new GrupoBD(conexion);
+        Vector<Grupo> usua = gbd.mostrarGrupos();
+        lista.setListData(usua);
+        
+    }
     
 }
