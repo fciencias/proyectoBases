@@ -1,7 +1,9 @@
 package calendarizador;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 /**
  *
@@ -40,6 +42,7 @@ public class UsuarioBD {
     }
     
     public boolean agregarUsuario(Usuario nuevoUser) {
+        boolean salida = true;
         st.append("INSERT INTO usuario VALUES ('");
         st.append(nuevoUser.getId_usuario());
         st.append("','");
@@ -66,20 +69,43 @@ public class UsuarioBD {
             conexion.actualizarBase(st.toString());
         } catch (SQLException exc) {
             System.out.println("Error al insertar en la base");
+            salida = false;
         } 
-        return false;
+        return salida;
     }
     
-    public String mostrarUsuarios () throws SQLException {
+    public void eliminarUsuario(String identificador) {
         st = new StringBuilder();
-        resultado = conexion.consulta("SELECT * FROM usuario;");
-        while (resultado.next()) {
-            st.append(resultado.getString("id_usuario"));
-            st.append("\t");
-            st.append(resultado.getString("nombre"));
-            st.append("\n");
+        st.append("DELETE FROM usuario WHERE id_usuario = '");
+        st.append(identificador);
+        st.append("';");
+        try {
+            conexion.actualizarBase(st.toString());
+        } catch (SQLException e) {
+            System.err.println("Error al borrar de la base de datos");
         }
-        return st.toString();
+    }
+    
+    public Vector<Usuario> mostrarUsuarios () {
+        Vector<Usuario> vector = new Vector<Usuario>();
+        try {
+            resultado = conexion.consulta("SELECT * FROM usuario;");
+            Usuario tmp = null;
+            while (resultado.next()) {
+                String idU = resultado.getString("id_usuario");
+                String nom = resultado.getString("nombre");
+                String app = resultado.getString("ap_paterno");
+                String apm = resultado.getString("ap_materno");
+                String ema = resultado.getString("email");
+                String pas = resultado.getString("id_password");
+                Date date = resultado.getDate("fecha_nacimiento");
+                tmp = new Usuario(idU, nom, app, apm, ema, pas, date);
+                vector.add(tmp);
+            }
+        } catch (SQLException sqle) {
+            System.err.println("Error al abrir los usuarios");
+        }
+        return vector;
     }
     
     

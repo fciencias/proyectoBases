@@ -88,7 +88,21 @@ class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "nombre=" + nombre + ", ap_paterno=" + ap_paterno + ", ap_materno=" + ap_materno + ", email=" + email + ", id_usuario=" + id_usuario + ", password=" + password + ", fecha=" + fecha + '}';
+        StringBuilder st = new StringBuilder();
+        st.append("ID de Usuario: ");
+        st.append(id_usuario);
+        st.append("    Nombre: ");
+        st.append(nombre);
+        st.append("    Ap. Paterno: ");
+        st.append(ap_paterno);
+        st.append("    Ap. Materno: ");
+        st.append(ap_materno);
+        st.append("    E-mail: ");
+        st.append(email);
+        st.append("    Fecha Nac.: ");
+        st.append(fecha);
+        st.append("\n");
+        return st.toString();
     }
     
     

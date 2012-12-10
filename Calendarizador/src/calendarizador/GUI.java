@@ -5,13 +5,16 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 
@@ -46,6 +49,7 @@ public class GUI {
         panel_principal.setLayout(new BorderLayout());
         informacion = new JPanel();
         pestanas = creaPestanas();
+        //aqui van las tablas
         informacion.add(pestanas);
         panel_principal.add(informacion, BorderLayout.CENTER);
         marco.add(panel_principal);
@@ -110,8 +114,16 @@ public class GUI {
         principal.setLayout(new BorderLayout());
         
         JPanel usuariosPanel = new JPanel();
-        usuariosPanel.setPreferredSize(new Dimension(600, 500));
+        JList<Usuario> lista = new JList<Usuario>();
+        JScrollPane rollo = new JScrollPane(lista);
+        rollo.setPreferredSize(new Dimension(590, 450));
+        //llena tabla
+        final UsuarioBD createuser = new UsuarioBD(conexion);
+        Vector<Usuario> usua = createuser.mostrarUsuarios();
+        lista.setListData(usua);
         
+        usuariosPanel.setPreferredSize(new Dimension(600, 500));
+        usuariosPanel.add(rollo);
         JPanel botones = new JPanel();
         JButton adduser = new JButton("Agregar Usuario");
         JButton deluser = new JButton(" Borrar Usuario");
@@ -126,10 +138,12 @@ public class GUI {
                     DialogoAddUser agregarUsuarioDialogo = new DialogoAddUser(marco, "Agregar Usuario", "");
                     Usuario nu = agregarUsuarioDialogo.corre();
                     if (nu != null) {
-                        UsuarioBD createuser = new UsuarioBD(conexion);
                         boolean createCorrected = createuser.agregarUsuario(nu);
                         if (createCorrected) {
                             JOptionPane.showMessageDialog(marco, "Exito al insertar");
+                            //actualizar listas
+                        } else {
+                            JOptionPane.showMessageDialog(marco, "Error al Insertar");
                         }
                     }
                 }
@@ -138,7 +152,13 @@ public class GUI {
         deluser.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 //Aqui va el verdadero codigo
-                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+                DialogoValidador validador = new DialogoValidador(marco, "Validar", "", conexion);
+                boolean ok = validador.corre();
+                if (ok) {
+                    DialogoDelUser deluser = new DialogoDelUser(marco, "Eliminar", "Prueba", conexion);
+                    deluser.corre();
+                    //actualizar listas
+                }
             }
         });
         botones.add(adduser);
