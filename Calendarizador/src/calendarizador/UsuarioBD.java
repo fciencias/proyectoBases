@@ -39,19 +39,35 @@ public class UsuarioBD {
         return false;
     }
     
-    /**
-     * 
-     */
-    public String consultarPasswd(Usuario usuario) throws SQLException {
-        String passwd = null;
-        st.append("SELECT id_password FROM usuario WHERE id_usuario = '");
-        st.append(usuario.getId_usuario());
-        st.append("';");
-        resultado = conexion.consulta(st.toString());
-        while (resultado.next() != false) {
-            passwd = resultado.getString("id_passwordd");
+    public boolean agregarUsuario(Usuario nuevoUser) {
+        st.append("INSERT INTO usuario VALUES ('");
+        st.append(nuevoUser.getId_usuario());
+        st.append("','");
+        st.append(nuevoUser.getNombre());
+        st.append("','");
+        st.append(nuevoUser.getAp_paterno());
+        st.append("','");
+        st.append(nuevoUser.getAp_materno());
+        st.append("','");
+        st.append(nuevoUser.getEmail());
+        st.append("',");
+        if (nuevoUser.getFecha() != null ) {
+            st.append("'");
+            st.append(nuevoUser.getFecha());
+            st.append("','");
+        } else {
+            st.append("null,'");
         }
-        return passwd;
+        st.append(nuevoUser.getPassword());
+        st.append("');");
+        try {
+            System.out.println(nuevoUser.toString());
+            System.out.println(st.toString());
+            conexion.actualizarBase(st.toString());
+        } catch (SQLException exc) {
+            System.out.println("Error al insertar en la base");
+        } 
+        return false;
     }
     
     public String mostrarUsuarios () throws SQLException {

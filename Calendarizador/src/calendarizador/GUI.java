@@ -120,15 +120,19 @@ public class GUI {
         deluser.setToolTipText("Elimina a un usuario");
         adduser.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                //Aqui va el verdadero codigo
-                //si el uuario es valido entonces has esto
                 DialogoValidador validador = new DialogoValidador(marco, "Validar", "", conexion);
                 boolean ok = validador.corre();
                 if (ok) {
                     DialogoAddUser agregarUsuarioDialogo = new DialogoAddUser(marco, "Agregar Usuario", "");
-                    agregarUsuarioDialogo.corre();
+                    Usuario nu = agregarUsuarioDialogo.corre();
+                    if (nu != null) {
+                        UsuarioBD createuser = new UsuarioBD(conexion);
+                        boolean createCorrected = createuser.agregarUsuario(nu);
+                        if (createCorrected) {
+                            JOptionPane.showMessageDialog(marco, "Exito al insertar");
+                        }
+                    }
                 }
-                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         deluser.addActionListener(new ActionListener() {

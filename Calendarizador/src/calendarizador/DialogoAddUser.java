@@ -123,8 +123,7 @@ public class DialogoAddUser extends JDialog {
         String app = inApPaterno.getText();
         String apm = inApMaterno.getText();
         String corre = inEmail.getText();
-        char[] pass = inPassword.getPassword();
-        String contra = pass.toString();
+        String contra = new String(inPassword.getPassword());
         if (id.isEmpty()) {
             mensaje += "El Id no puede ser vacio.\n";
             validos = false;
@@ -150,14 +149,18 @@ public class DialogoAddUser extends JDialog {
             return false;
         }
         Date fecha = calendario.getDate();
-        long sqldate = fecha.getTime();
-        java.sql.Date sqlfecha = new java.sql.Date(sqldate);
+        java.sql.Date sqlfecha = null;
+        if (fecha != null) {
+            long sqldate = fecha.getTime();
+            sqlfecha = new java.sql.Date(sqldate);
+        }
         nuevoUsuario = new Usuario(id, name, app, apm, corre, contra, sqlfecha);
         return validos;
     }
     
     
-    public void corre() {
+    public Usuario corre() {
        this.setVisible(true);
+       return nuevoUsuario;
     }
 }

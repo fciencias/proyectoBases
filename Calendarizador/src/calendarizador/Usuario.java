@@ -85,6 +85,11 @@ class Usuario {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "nombre=" + nombre + ", ap_paterno=" + ap_paterno + ", ap_materno=" + ap_materno + ", email=" + email + ", id_usuario=" + id_usuario + ", password=" + password + ", fecha=" + fecha + '}';
+    }
     
     
     
