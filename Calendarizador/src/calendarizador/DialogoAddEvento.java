@@ -31,6 +31,7 @@ public class DialogoAddEvento extends JDialog {
     private JTextField hora_fin;
     private JTextField asistentes;
     private JTextArea descripcion;
+    private JButton recursos;
     private JButton aceptar;
     private JButton cancelar;
     private Evento mi_evento;
@@ -45,13 +46,13 @@ public class DialogoAddEvento extends JDialog {
             String mensaje) {
         super(padre, titulo, true);
         armaDialogo(padre, mensaje);
-        defineEscuchas();
+        defineEscuchas(padre);
     }
 
     
     private void armaDialogo(JFrame padre, String mensaje) {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(9, 2));
+        panel.setLayout(new GridLayout(10, 2));
         panel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         JLabel etiqueta = new JLabel(mensaje, SwingConstants.LEFT);
         panel.add(etiqueta);
@@ -80,8 +81,11 @@ public class DialogoAddEvento extends JDialog {
         panel.add(etiqueta);
         descripcion = new JTextArea();
         panel.add(descripcion);
+        panel.add(new JLabel(""));
+        recursos = new JButton("Recursos");
         aceptar = new JButton("aceptar");
         cancelar = new JButton("cancelar");
+        panel.add(recursos);
         panel.add(aceptar);
         panel.add(cancelar);
         getContentPane().add(panel);
@@ -130,7 +134,7 @@ public class DialogoAddEvento extends JDialog {
         return validos;
     }
     
-    private void defineEscuchas() {
+    private void defineEscuchas(final JFrame padre) {
          addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 mi_evento = null;
@@ -151,6 +155,14 @@ public class DialogoAddEvento extends JDialog {
             public void actionPerformed(ActionEvent ae) {
                 mi_evento = null;
                 dispose();
+            }
+        });
+        
+        recursos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                CheckBoxes cb = new CheckBoxes(padre, "", "");
+                cb.corre();
             }
         });
     }
