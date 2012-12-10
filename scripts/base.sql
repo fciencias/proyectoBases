@@ -46,7 +46,7 @@ CREATE TABLE evento
 
 
 
-CREATE TABLE usarioAsistente
+CREATE TABLE usuarioAsistente
 (
   id_usuario character varying(50) NOT NULL,
   id_evento integer NOT NULL,
@@ -78,7 +78,6 @@ CREATE TABLE recurso
   descripcion character varying (50),
   cantidad integer NOT NULL,
   CONSTRAINT pkey_recurso PRIMARY KEY (num_inventario),
-  CONSTRAINT stock_cantidad CHECK (cantidad >0)
 );
 
 
