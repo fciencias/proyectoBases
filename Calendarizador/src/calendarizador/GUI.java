@@ -114,10 +114,9 @@ public class GUI {
         principal.setLayout(new BorderLayout());
         
         JPanel usuariosPanel = new JPanel();
-        JList<Usuario> lista = new JList<Usuario>();
+        final JList<Usuario> lista = new JList<Usuario>();
         JScrollPane rollo = new JScrollPane(lista);
         rollo.setPreferredSize(new Dimension(590, 450));
-        //llena tabla
         final UsuarioBD createuser = new UsuarioBD(conexion);
         Vector<Usuario> usua = createuser.mostrarUsuarios();
         lista.setListData(usua);
@@ -141,7 +140,7 @@ public class GUI {
                         boolean createCorrected = createuser.agregarUsuario(nu);
                         if (createCorrected) {
                             JOptionPane.showMessageDialog(marco, "Exito al insertar");
-                            //actualizar listas
+                            actualizaLista(lista);
                         } else {
                             JOptionPane.showMessageDialog(marco, "Error al Insertar");
                         }
@@ -157,7 +156,7 @@ public class GUI {
                 if (ok) {
                     DialogoDelUser deluser = new DialogoDelUser(marco, "Eliminar", "Prueba", conexion);
                     deluser.corre();
-                    //actualizar listas
+                    actualizaLista(lista);
                 }
             }
         });
@@ -232,7 +231,11 @@ public class GUI {
         return principal;
     }
     
-    
+    private void actualizaLista(JList<Usuario> lista) {
+        UsuarioBD createuser = new UsuarioBD(conexion);
+        Vector<Usuario> usua = createuser.mostrarUsuarios();
+        lista.setListData(usua);
+    }
     
     
     
