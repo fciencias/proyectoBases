@@ -54,5 +54,17 @@ public class UsuarioBD {
         return passwd;
     }
     
+    public String mostrarUsuarios () throws SQLException {
+        st = new StringBuilder();
+        resultado = conexion.consulta("SELECT * FROM usuario;");
+        while (resultado.next()) {
+            st.append(resultado.getString("id_usuario"));
+            st.append("\t");
+            st.append(resultado.getString("nombre"));
+            st.append("\n");
+        }
+        return st.toString();
+    }
+    
     
 }//end class

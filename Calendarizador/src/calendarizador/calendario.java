@@ -19,6 +19,8 @@ public class calendario {
         marco = new JFrame("prueba");
         panel = new JPanel();
         calendario_ = new JCalendar();
+        calendario_.setDecorationBordersVisible(true);
+        calendario_.setWeekOfYearVisible(false);
         panel.add(calendario_);
         marco.setPreferredSize(new Dimension(400, 400));
         marco.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

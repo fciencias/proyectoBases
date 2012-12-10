@@ -113,10 +113,9 @@ public class GUI {
         JPanel botones = new JPanel();
         JButton adduser = new JButton("Agregar Usuario");
         JButton deluser = new JButton(" Borrar Usuario");
-        JButton addEvent = new JButton("Agregar Evento");
+        
         adduser.setToolTipText("Agrega a un nuevo usuario");
         deluser.setToolTipText("Elimina a un usuario");
-        addEvent.setToolTipText("Crea un nuevo evento");
         adduser.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 //Aqui va el verdadero codigo
@@ -129,15 +128,8 @@ public class GUI {
                 JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        addEvent.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                //Aqui va el verdadero codigo
-                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
         botones.add(adduser);
         botones.add(deluser);
-        botones.add(addEvent);
         principal.add(usuariosPanel, BorderLayout.CENTER);
         principal.add(botones, BorderLayout.SOUTH);
         return principal;
