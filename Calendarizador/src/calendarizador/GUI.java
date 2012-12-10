@@ -180,7 +180,6 @@ public class GUI {
         rollo.setPreferredSize(new Dimension(590, 450));
         Vector<Evento> usua = eventodb.mostrarEventos();
         lista.setListData(usua);
-        //
         JPanel eventosPanel = new JPanel();
         eventosPanel.setPreferredSize(new Dimension(600, 500));
         eventosPanel.add(rollo);
@@ -226,6 +225,8 @@ public class GUI {
         return principal;
     }
 
+    
+    //
     private JPanel pestanasGrupos() {
         JPanel principal = new JPanel();
         principal.setPreferredSize(new Dimension(650, 510));
