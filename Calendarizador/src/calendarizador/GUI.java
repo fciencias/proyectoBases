@@ -195,16 +195,28 @@ public class GUI {
                     DialogoAddEvento dae = new DialogoAddEvento(marco, "Agregar Evento", "Agregar Evento");
                     Evento tmp = dae.corre();
                     if (tmp != null) {
-                     eventodb.agregarEvento(tmp, idu);
-                     actualizaListaEve(lista);
+                        boolean ok = eventodb.agregarEvento(tmp, idu);
+                        if (ok) {
+                             JOptionPane.showMessageDialog(marco, "Exito al insertar");
+                            actualizaListaEve(lista);
+                        } else {
+                            JOptionPane.showMessageDialog(marco, "Error al Insertar");
+                        }
                     }
                 }
             }
         });
         delevent.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
+                DialogoValidador dv = new DialogoValidador(marco, "Validar", "Ingresar datos", conexion);
+                boolean corre = dv.corre();
+                if (corre) {
+                    DialogDelEvent dde = new DialogDelEvent(marco, "Eliminar", "Insertar id evento", conexion);
+                    dde.corre();
+                    actualizaListaEve(lista);
+                }
                 //Aqui va el verdadero codigo
-                JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(marco, "Aqui va algo", "null", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         botones.add(addevent);

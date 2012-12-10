@@ -95,4 +95,16 @@ public class EventoBD {
         }
         return vector;
     } 
+    
+    public void eliminarEvento(String identificador) {
+        sb = new StringBuilder();
+        sb.append("DELETE FROM evento WHERE id_evento = ");
+        sb.append(identificador);
+        sb.append(";");
+        try {
+            conexion.actualizarBase(sb.toString());
+        } catch (SQLException e) {
+            System.err.println("Error al borrar de la base de datos");
+        }
+    }
 }
